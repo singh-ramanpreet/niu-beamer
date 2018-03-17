@@ -1,0 +1,132 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Created December 14, 2017 %%%%%%%%%%%%%%%
+%% Ramanpreet Singh          %%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mode<presentation>
+\usetheme{Rochester}
+
+\usepackage[absolute,overlay]{textpos}
+
+\ProvidesPackage{beamerthemeNIU}
+
+% color definitions
+\definecolor{NIUred}{RGB}{200,16,46}
+\definecolor{NIUgray}{RGB}{165,167,168}
+\definecolor{NIUwhite}{RGB}{255,255,255}
+\definecolor{NIUblack}{RGB}{0,0,0}
+
+% set the title color
+\setbeamercolor{title}{fg=NIUred, bg=NIUwhite}
+
+% set the frame title color
+\setbeamercolor{frametitle}{fg=NIUwhite,bg=NIUred}
+
+%set the block, itemize colors
+\setbeamercolor{block}{fg=NIUred}
+\setbeamercolor{block item}{fg=NIUred}
+\setbeamercolor{itemize item}{fg=NIUred}
+\setbeamercolor{block title}{fg=NIUwhite,bg=NIUred}
+\setbeamercolor{block body}{bg=NIUgray!15!white}
+\setbeamercolor{block title example}{fg=NIUwhite, bg=NIUred}
+\setbeamercolor{block body example}{bg=NIUgray!15!white}
+\setbeamercolor{block title alerted}{fg=NIUwhite, bg=NIUred}
+\setbeamercolor{block body alerted}{bg=NIUgray!15!white}
+\setbeamercolor{structure}{fg=NIUred}
+
+% footer colors
+\setbeamercolor{section in footer}{fg=NIUwhite,bg=NIUblack}
+\setbeamercolor{subsection in footer}{fg=NIUwhite,bg=NIUblack}
+\setbeamercolor{pagenumber in footer}{fg=NIUwhite,bg=NIUblack}
+
+\setbeamercolor{shadow}{fg=black}
+
+%changing footer line
+\setbeamertemplate{footline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{section in footer}%
+    \insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.32\paperwidth,ht=2.25ex,dp=1ex,center]{subsection in footer}%
+    \insertsectionhead
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.34\paperwidth,ht=2.25ex,dp=1ex,center]{pagenumber in footer}%
+   \insertshortauthor \ (\insertshortinstitute), \quad \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+% changing title graphic position
+\setbeamertemplate{title page}
+{
+    \ifx\insertsubtitle\@empty%
+        {\vskip -1.32cm}
+    \else%
+      {\vskip -1.15cm}
+    \fi%
+  {\centering \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
+  \vbox{}
+  \vfill
+  \begingroup
+    \centering
+    \begin{beamercolorbox}[sep=8pt,center]{title}
+      \usebeamerfont{title}\inserttitle\par%
+      \ifx\insertsubtitle\@empty%
+      \else%
+        \vskip0.25em%
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par}%
+      \fi%     
+    \end{beamercolorbox}%
+    \vskip1em\par
+    \begin{beamercolorbox}[sep=8pt,center,]{author}
+      \usebeamerfont{author} \insertauthor
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{institute}
+      \usebeamerfont{institute}\insertinstitute
+    \end{beamercolorbox}
+    \begin{beamercolorbox}[sep=8pt,center]{date}
+      \usebeamerfont{date}\insertdate
+    \end{beamercolorbox}\vskip0.5em
+  \endgroup
+  \vfill
+}
+
+% change logo position
+
+% first remove default 
+\setbeamertemplate{sidebar right}
+{
+    \vfill%
+    \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+    \vskip2pt
+}
+% Now adding to frametitle
+\addtobeamertemplate{frametitle}
+{
+   \begin{textblock*}{3cm}(0.99\textwidth,0.68cm)
+   \insertlogo
+   \end{textblock*}
+}
+
+% adding NIU grey shadow
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+  color(0pt)=(frametitle.bg);
+  color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+    color(0pt)=(NIUgray);
+    color(1.3pt)=(NIUgray)}
+}
+\addtobeamertemplate{headline}
+{}
+{%
+  \vskip-0.2pt
+  \pgfuseshading{beamer@topshade}
+  \vskip-2pt
+}
+
+\mode
+<all>

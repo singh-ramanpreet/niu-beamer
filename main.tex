@@ -1,0 +1,124 @@
+\documentclass{beamer}
+\usetheme{NIU}
+
+% suppress navigation bar
+\beamertemplatenavigationsymbolsempty
+
+% Title
+\title[Short Title]
+{Long Title}
+
+% Sub Title
+%\subtitle{a}
+
+% Author
+\author[F. Author]
+{\texorpdfstring{\underline{First~Author}}{First~Author}\inst{\dag} \and Second~Author\inst{\dag} \and Third~Author\inst{\ddag}}
+\hypersetup{pdfauthor={Ramanpreet Singh}}
+
+% - Give the names in the same order as the appear in the paper.
+% - Use \and to separate authors name
+% - Use the \inst{?} command only if the authors have different affiliation.
+
+\institute[NIU]% (optional)
+{
+ \inst{\dag}%
+   Northern Illinois University, USA
+   \and
+   \inst{\ddag}%
+   Lorem Ipsum
+}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date{March 17, 2018}
+\subject{} % only for pdf info
+
+%\AtBeginSubsection[]
+%{
+%  \begin{frame}<beamer>{Outline}
+%    \tableofcontents[currentsection,currentsubsection]
+%  \end{frame}
+%}
+
+
+% Title Graphics add befor titlepage
+\titlegraphic{\includegraphics[height=3cm]{NIU_logo.eps}}
+
+\begin{document}
+\frame{\titlepage}
+
+
+% add logo after title page, so it does show on title page
+\logo{\includegraphics[trim=1cm 2.5cm 1cm 0,clip,width=2cm]{NIU_logo.eps}}
+
+% Let's get started
+
+\begin{frame}<beamer>{Outline}
+    \tableofcontents
+\end{frame}
+
+\section{First Main Section}
+
+\subsection{First Subsection}
+
+\begin{frame}{First Slide Title}{Optional Subtitle}
+  \begin{itemize}
+  \item {
+    My first point.
+  }
+  \item {
+    My second point.
+  }
+  \end{itemize}
+\end{frame}
+
+\subsection{Second Subsection}
+
+% You can reveal the parts of a slide one at a time
+% with the \pause command:
+\begin{frame}{Second Slide Title}
+  \begin{itemize}
+  \item {
+    First item.
+    \pause % The slide will pause after showing the first item
+  }
+  \item {   
+    Second item.
+  }
+  % You can also specify when the content should appear
+  % by using <n->:
+  \item<3-> {
+    Third item.
+  }
+  \item<4-> {
+    Fourth item.
+  }
+  % or you can use the \uncover command to reveal general
+  % content (not just \items):
+  \item<5-> {
+    Fifth item. \uncover<6->{Extra text in the fifth item.}
+  }
+  \end{itemize}
+\end{frame}
+
+\section{Second Main Section}
+
+\subsection{Another Subsection}
+
+\begin{frame}{Blocks}
+\begin{block}{Block Title}
+You can also highlight sections of your presentation in a block, with it's own title
+\end{block}
+\begin{theorem}
+There are separate environments for theorems, examples, definitions and proofs.
+\end{theorem}
+\begin{example}
+Here is an example of an example block.
+\end{example}
+\begin{alertblock}{Alert}
+Here is an example of an alert block.
+\end{alertblock}
+\end{frame}
+
+\end{document}
