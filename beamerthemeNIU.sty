@@ -1,12 +1,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Created December 14, 2017 %%%%%%%%%%%%%%%
-%% Ramanpreet Singh          %%%%%%%%%%%%%%%
+%%%% Created October 7, 2018 %%%%%%%%%%%%%%%
+%%%% Ramanpreet Singh        %%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \mode<presentation>
-\usetheme{Rochester}
+\usetheme[progressbar=frametitle, subsectionpage=progressbar]{metropolis}
+
+\makeatletter
+\setlength{\metropolis@titleseparator@linewidth}{1.1pt}
+\setlength{\metropolis@progressonsectionpage@linewidth}{1.1pt}
+\setlength{\metropolis@progressinheadfoot@linewidth}{1.1pt}
+\makeatother
 
 \usepackage[absolute,overlay]{textpos}
+\usepackage{booktabs}
 
 \ProvidesPackage{beamerthemeNIU}
 
@@ -17,10 +24,15 @@
 \definecolor{NIUblack}{RGB}{0,0,0}
 
 % set the title color
-\setbeamercolor{title}{fg=NIUred, bg=NIUwhite}
+\setbeamercolor{title}{fg=NIUred}
+\setbeamercolor{subtitle}{fg=NIUred}
 
 % set the frame title color
 \setbeamercolor{frametitle}{fg=NIUwhite,bg=NIUred}
+\setbeamercolor{framesubtitle}{fg=mDarkTeal}
+
+% set the progress bar color
+\setbeamercolor{progress bar}{fg=orange, bg=NIUgray}
 
 %set the block, itemize colors
 \setbeamercolor{block}{fg=NIUred}
@@ -30,14 +42,14 @@
 \setbeamercolor{block body}{bg=NIUgray!15!white}
 \setbeamercolor{block title example}{fg=NIUwhite, bg=NIUred}
 \setbeamercolor{block body example}{bg=NIUgray!15!white}
-\setbeamercolor{block title alerted}{fg=NIUwhite, bg=NIUred}
+\setbeamercolor{block title alerted}{fg=NIUwhite, bg=mLightGreen}
 \setbeamercolor{block body alerted}{bg=NIUgray!15!white}
 \setbeamercolor{structure}{fg=NIUred}
 
 % footer colors
-\setbeamercolor{section in footer}{fg=NIUwhite,bg=NIUblack}
-\setbeamercolor{subsection in footer}{fg=NIUwhite,bg=NIUblack}
-\setbeamercolor{pagenumber in footer}{fg=NIUwhite,bg=NIUblack}
+\setbeamercolor{section in footer}{fg=NIUwhite,bg=mDarkTeal!65!NIUblack}
+\setbeamercolor{subsection in footer}{fg=NIUwhite,bg=mDarkTeal}
+\setbeamercolor{pagenumber in footer}{fg=NIUwhite,bg=mDarkTeal!65!NIUblack}
 
 \setbeamercolor{shadow}{fg=black}
 
@@ -61,17 +73,13 @@
 % changing title graphic position
 \setbeamertemplate{title page}
 {
-    \ifx\insertsubtitle\@empty%
-        {\vskip -1.32cm}
-    \else%
-      {\vskip -1.15cm}
-    \fi%
+   \vskip 0.1em
   {\centering \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic\par}
   \vbox{}
   \vfill
   \begingroup
     \centering
-    \begin{beamercolorbox}[sep=8pt,center]{title}
+    \begin{beamercolorbox}[sep=3pt,center]{title}
       \usebeamerfont{title}\inserttitle\par%
       \ifx\insertsubtitle\@empty%
       \else%
@@ -80,13 +88,13 @@
       \fi%     
     \end{beamercolorbox}%
     \vskip1em\par
-    \begin{beamercolorbox}[sep=8pt,center,]{author}
+    \begin{beamercolorbox}[sep=3pt,center,]{author}
       \usebeamerfont{author} \insertauthor
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,center]{institute}
+    \begin{beamercolorbox}[sep=3pt,center]{institute}
       \usebeamerfont{institute}\insertinstitute
     \end{beamercolorbox}
-    \begin{beamercolorbox}[sep=8pt,center]{date}
+    \begin{beamercolorbox}[sep=3pt,center]{date}
       \usebeamerfont{date}\insertdate
     \end{beamercolorbox}\vskip0.5em
   \endgroup
@@ -105,28 +113,16 @@
 % Now adding to frametitle
 \addtobeamertemplate{frametitle}
 {
-   \begin{textblock*}{3cm}(0.99\textwidth,0.68cm)
+   \begin{textblock*}{3cm}(1.03\textwidth,0.42cm)
    \insertlogo
    \end{textblock*}
 }
-
-% adding NIU grey shadow
-\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
-  color(0pt)=(frametitle.bg);
-  color(\paperwidth)=(frametitle right.bg)}
-
-\AtBeginDocument{
-  \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
-    color(0pt)=(NIUgray);
-    color(1.3pt)=(NIUgray)}
+{% adding subtitle, officially not supported by metropolis theme
+  \ifx\insertframesubtitle\@empty\else%
+  \usebeamerfont{framesubtitle}%
+  \usebeamercolor[fg]{framesubtitle}%
+  \insertframesubtitle%
+  \fi%
 }
-\addtobeamertemplate{headline}
-{}
-{%
-  \vskip-0.2pt
-  \pgfuseshading{beamer@topshade}
-  \vskip-2pt
-}
-
 \mode
 <all>
